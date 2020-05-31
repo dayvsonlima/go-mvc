@@ -8,6 +8,8 @@ import (
 
 func main() {
 	engine := gin.New()
-	application := config.DrawRoutes(engine)
-	application.Run(":8080")
+	engine.LoadHTMLGlob("app/views/**/*")
+	config.DrawRoutes(engine)
+
+	engine.Run(":8080")
 }

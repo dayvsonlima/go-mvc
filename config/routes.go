@@ -6,15 +6,12 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// DrawRoutes ...
-func DrawRoutes(routes *gin.Engine) *gin.Engine {
-
-	// Posts resources
-	routes.GET("/posts", c.PostIndex)
-	routes.GET("/posts/:id", c.PostShow)
-	routes.POST("/posts", c.PostCreate)
-	routes.PUT("/posts", c.PostUpdate)
-	routes.DELETE("/posts", c.PostDelete)
-
-	return routes
+// DrawRoutes .
+func DrawRoutes(routes *gin.Engine) {
+	routes.GET("/posts", c.PostsIndex)
+	routes.GET("/posts/new", c.PostsNew)
+	routes.POST("/posts", c.PostsCreate)
+	routes.GET("/post/:id", c.PostsShow)
+	routes.PUT("/post/:id", c.PostsUpdate)
+	routes.DELETE("/post/:id", c.PostsDelete)
 }
