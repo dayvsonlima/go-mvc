@@ -1,13 +1,19 @@
 package controllers
 
 import (
+	"application/database"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
 
+var (
+	db = database.Connection
+)
+
 // PostsIndex .
 func PostsIndex(ctx *gin.Context) {
+
 	ctx.HTML(http.StatusOK, "posts/index", gin.H{})
 }
 
