@@ -19,6 +19,11 @@ func init() {
 	Connection, _ = gorm.Open("sqlite3", "development.db")
 }
 
+// ORM .
+func ORM() *gorm.DB {
+	return Connection
+}
+
 // Migrations .
 func Migrations() {
 	Connection.AutoMigrate(&models.Post{})

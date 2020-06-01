@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"application/app/models"
 	"application/database"
 	"net/http"
 
@@ -8,13 +9,14 @@ import (
 )
 
 var (
-	db = database.Connection
+	db = database.ORM()
 )
 
 // PostsIndex .
-func PostsIndex(ctx *gin.Context) {
-
-	ctx.HTML(http.StatusOK, "posts/index", gin.H{})
+func PostsIndex(c *gin.Context) {
+	var posts []models.Post
+	db.Find(&posts)
+	c.JSON(http.StatusOK, posts)
 }
 
 // PostsShow .
