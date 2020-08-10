@@ -7,7 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// PostsDelete .
+// Delete .
 func Delete(ctx *gin.Context) {
 	var post models.Post
 	if err := db.Where("id = ?", ctx.Param("id")).First(&post).Error; err != nil {

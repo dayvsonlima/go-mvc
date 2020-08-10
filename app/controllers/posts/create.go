@@ -7,7 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// PostsCreate .
+// Create .
 func Create(ctx *gin.Context) {
 	var post Input
 	if err := ctx.ShouldBindJSON(&post); err != nil {

@@ -7,7 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// PostsShow .
+// Show .
 func Show(ctx *gin.Context) {
 	var post models.Post
 	db.First(&post, ctx.Param("id"))

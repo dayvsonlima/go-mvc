@@ -7,7 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// PostsIndex .
+// Index .
 func Index(ctx *gin.Context) {
 	var posts []models.Post
 	db.Find(&posts)
