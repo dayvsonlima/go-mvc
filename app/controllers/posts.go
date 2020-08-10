@@ -12,6 +12,11 @@ var (
 	db = database.ORM()
 )
 
+type CreatePostInput struct {
+	Title   string `json:"title" binding:"required"`
+	Content string `json:"content" binding:"required"`
+}
+
 // PostsIndex .
 func PostsIndex(ctx *gin.Context) {
 	var posts []models.Post
@@ -25,21 +30,33 @@ func PostsShow(ctx *gin.Context) {
 	db.First(&post, ctx.Param("id"))
 
 	if post.ID == 0 {
-		ctx.JSON(http.StatusNotFound, gin.H{"status": http.StatusNotFound, "message": "post not found!"})
+		ctx.JSON(http.StatusNotFound, gin.H{
+			"status":  http.StatusNotFound,
+			"message": "post not found!",
+		})
+
 		return
 	}
 
 	ctx.JSON(http.StatusOK, post)
 }
 
-// PostsNew .
-func PostsNew(ctx *gin.Context) {
-
-}
-
 // PostsCreate .
 func PostsCreate(ctx *gin.Context) {
 
+	var post CreatePostInput
+	if err := ctx.ShouldBindJSON(&post); err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	newPost := &models.Post{
+		Title:   post.Title,
+		Content: post.Content,
+	}
+
+	db.Create(newPost)
+	ctx.JSON(http.StatusOK, newPost)
 }
 
 // PostsUpdate .
