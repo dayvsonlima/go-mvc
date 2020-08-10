@@ -9,9 +9,9 @@ import (
 // DrawRoutes .
 func DrawRoutes(routes *gin.Engine) {
 	routes.GET("/posts", c.PostsIndex)
-	routes.GET("/posts/new", c.PostsNew)
 	routes.POST("/posts", c.PostsCreate)
-	routes.GET("/post/:id", c.PostsShow)
-	routes.PUT("/post/:id", c.PostsUpdate)
-	routes.DELETE("/post/:id", c.PostsDelete)
+	routes.GET("/posts/:id", c.PostsShow)
+	routes.PUT("/posts/:id", c.PostsUpdate)
+	routes.PATCH("/posts/:id", c.PostsUpdate)
+	routes.DELETE("/posts/:id", c.PostsDelete)
 }
