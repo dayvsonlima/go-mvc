@@ -9,17 +9,17 @@ import (
 
 // Create .
 func Create(ctx *gin.Context) {
-	var post Input
-	if err := ctx.ShouldBindJSON(&post); err != nil {
+	var input Input
+	if err := ctx.ShouldBindJSON(&input); err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	newPost := &models.Post{
-		Title:   post.Title,
-		Content: post.Content,
+	post := &models.Post{
+		Title:   input.Title,
+		Content: input.Content,
 	}
 
-	db.Create(newPost)
-	ctx.JSON(http.StatusOK, newPost)
+	db.Create(post)
+	ctx.JSON(http.StatusOK, post)
 }
