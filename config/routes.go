@@ -12,5 +12,6 @@ func DrawRoutes(routes *gin.Engine) {
 	routes.POST("/posts", posts.Create)
 	routes.GET("/posts/:id", posts.Show)
 	routes.PUT("/posts/:id", posts.Update)
+	routes.PATCH("/posts/:id", posts.Update)
 	routes.DELETE("/posts/:id", posts.Delete)
 }

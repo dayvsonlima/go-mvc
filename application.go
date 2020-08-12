@@ -15,5 +15,6 @@ func main() {
 	database.Migrations()
 	defer database.Connection.Close()
 
+	engine.Use(gin.Logger())
 	engine.Run(":8080")
 }

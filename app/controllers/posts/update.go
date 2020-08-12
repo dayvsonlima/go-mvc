@@ -8,6 +8,11 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+type UpdateInput struct {
+	Title   string `json:"title"`
+	Content string `json:"content"`
+}
+
 // Update .
 func Update(ctx *gin.Context) {
 	var post models.Post
@@ -16,7 +21,7 @@ func Update(ctx *gin.Context) {
 		return
 	}
 
-	var input Input
+	var input UpdateInput
 	if err := ctx.ShouldBindJSON(&input); err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
