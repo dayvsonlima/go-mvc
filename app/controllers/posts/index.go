@@ -9,7 +9,11 @@ import (
 
 // Index .
 func Index(ctx *gin.Context) {
-	var posts []models.Post
-	db.Find(&posts)
+	var posts = make([]models.Post, 0, len(PostDB.Collection))
+
+	for _, value := range PostDB.Collection {
+		posts = append(posts, value)
+	}
+
 	ctx.JSON(http.StatusOK, posts)
 }

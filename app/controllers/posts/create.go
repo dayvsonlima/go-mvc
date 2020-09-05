@@ -20,11 +20,17 @@ func Create(ctx *gin.Context) {
 		return
 	}
 
-	post := &models.Post{
+	PostDB.Last++
+
+	id := PostDB.Last
+
+	post := models.Post{
+		ID:      id,
 		Title:   input.Title,
 		Content: input.Content,
 	}
 
-	db.Create(post)
+	PostDB.Collection[id] = post
+
 	ctx.JSON(http.StatusOK, post)
 }

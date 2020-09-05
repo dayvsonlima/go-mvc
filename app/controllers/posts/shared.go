@@ -1,12 +1,21 @@
 package posts
 
-import "application/database"
-
-var (
-	db = database.ORM()
+import (
+	"application/app/models"
 )
 
-type Input struct {
-	Title   string `json:"title" binding:"required"`
-	Content string `json:"content" binding:"required"`
+var (
+	PostDB = PostStore{
+		Last:       0,
+		Collection: make(map[int]models.Post),
+	}
+)
+
+// PostCollection .
+type PostCollection map[int]models.Post
+
+// PostStore .
+type PostStore struct {
+	Last       int
+	Collection PostCollection
 }

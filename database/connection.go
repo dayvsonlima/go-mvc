@@ -16,7 +16,7 @@ var (
 
 // Setup .
 func init() {
-	Connection, _ = gorm.Open("sqlite3", "database/development.db")
+	// Connection, _ = gorm.Open("sqlite3", "database/development.db")
 }
 
 // ORM .

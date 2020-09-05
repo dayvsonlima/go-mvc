@@ -1,25 +1,22 @@
 package posts
 
 import (
-	"application/app/models"
-	"net/http"
-
 	"github.com/gin-gonic/gin"
 )
 
 // Show .
 func Show(ctx *gin.Context) {
-	var post models.Post
-	db.First(&post, ctx.Param("id"))
+	// var post models.Post
+	// db.First(&post, ctx.Param("id"))
 
-	if post.ID == 0 {
-		ctx.JSON(http.StatusNotFound, gin.H{
-			"status":  http.StatusNotFound,
-			"message": "post not found!",
-		})
+	// if post.ID == 0 {
+	// 	ctx.JSON(http.StatusNotFound, gin.H{
+	// 		"status":  http.StatusNotFound,
+	// 		"message": "post not found!",
+	// 	})
 
-		return
-	}
+	// 	return
+	// }
 
-	ctx.JSON(http.StatusOK, post)
+	// ctx.JSON(http.StatusOK, post)
 }
