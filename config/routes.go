@@ -14,4 +14,6 @@ func DrawRoutes(routes *gin.Engine) {
 	routes.PUT("/posts/:id", posts.Update)
 	routes.PATCH("/posts/:id", posts.Update)
 	routes.DELETE("/posts/:id", posts.Delete)
+
+	routes.GET("/posts_quantity", posts.Count)
 }

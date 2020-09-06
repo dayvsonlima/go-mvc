@@ -2,20 +2,23 @@ package posts
 
 import (
 	"application/app/models"
+	"sync"
 )
 
 var (
 	PostDB = PostStore{
-		Last:       0,
-		Collection: make(map[int]models.Post),
+		Count:           0,
+		Collection:      make(map[int]*models.Post),
+		CollectionMutex: sync.RWMutex{},
 	}
 )
 
 // PostCollection .
-type PostCollection map[int]models.Post
+type PostCollection map[int]*models.Post
 
 // PostStore .
 type PostStore struct {
-	Last       int
-	Collection PostCollection
+	Count           int
+	Collection      PostCollection
+	CollectionMutex sync.RWMutex
 }

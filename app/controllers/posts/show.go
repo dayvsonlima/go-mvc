@@ -1,22 +1,15 @@
 package posts
 
 import (
+	"net/http"
+	"strconv"
+
 	"github.com/gin-gonic/gin"
 )
 
 // Show .
 func Show(ctx *gin.Context) {
-	// var post models.Post
-	// db.First(&post, ctx.Param("id"))
-
-	// if post.ID == 0 {
-	// 	ctx.JSON(http.StatusNotFound, gin.H{
-	// 		"status":  http.StatusNotFound,
-	// 		"message": "post not found!",
-	// 	})
-
-	// 	return
-	// }
-
-	// ctx.JSON(http.StatusOK, post)
+	id, _ := strconv.Atoi(ctx.Param("id"))
+	post := *PostDB.Collection[id]
+	ctx.JSON(http.StatusOK, post)
 }

@@ -20,17 +20,19 @@ func Create(ctx *gin.Context) {
 		return
 	}
 
-	PostDB.Last++
+	PostDB.CollectionMutex.Lock()
+	PostDB.Count++
 
-	id := PostDB.Last
+	id := PostDB.Count
 
-	post := models.Post{
+	post := &models.Post{
 		ID:      id,
 		Title:   input.Title,
 		Content: input.Content,
 	}
 
 	PostDB.Collection[id] = post
+	PostDB.CollectionMutex.Unlock()
 
 	ctx.JSON(http.StatusOK, post)
 }
