@@ -9,7 +9,6 @@ import (
 
 func main() {
 	engine := gin.New()
-	engine.LoadHTMLGlob("app/views/**/*")
 	config.DrawRoutes(engine)
 
 	database.Migrations()
